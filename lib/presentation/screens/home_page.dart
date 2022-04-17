@@ -61,17 +61,19 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             _usersDisplay = _users.where((u) {
               var name = u.name.toLowerCase();
+              var tphone = u.tphone.toString();
+              var phone = u.phone.toLowerCase();
               var email = u.email.toLowerCase();
               var department = u.department.toLowerCase();
-              return name.contains(searchText) || email.contains(searchText) || department.contains(searchText);
+              return name.contains(searchText) || email.contains(searchText) || department.contains(searchText) || tphone.contains(searchText) || phone.contains(searchText);
             }).toList();
           });
         },
         // controller: _textController,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: OutlineInputBorder(),
           prefixIcon: Icon(Icons.search),
-          hintText: 'Хайх, нэр, утас...',
+          hintText: 'Нэр, утас, алба, и-мейл...',
         ),
       ),
     );
