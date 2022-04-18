@@ -13,16 +13,18 @@ fs.readFile("./newContacts.json", "utf8", (err, jsonString) => {
     for (let index = 0; index < contacts.length; index++) {
       const tphone = contacts[index].tphone;
       const phone = contacts[index].phone;
-      // if(typeof tphone === 'string') {
-      //   contacts[index].tphone = 0
-      // }
-      // if(typeof phone === 'number') {
-      //   contacts[index].phone = contacts[index].phone.toString()
-      // }
-      // cleanedContacts.push(contacts[index])
-      console.log("T phone: ", typeof tphone);
+      if(typeof tphone === 'string') {
+        contacts[index].tphone = 0
+      }
+      if(typeof phone === 'number') {
+        contacts[index].phone = contacts[index].phone.toString()
+      }
+      contacts[index].phone = contacts[index].phone.replace('-', '');
+      cleanedContacts.push(contacts[index])
+      // console.log("T phone: ", typeof phone);
+      console.log("Phone: ", contacts[index].phone);
     }
-    // saveNewContacts(cleanedContacts)
+    saveNewContacts(cleanedContacts)
   } catch (err) {
     console.log("Error parsing JSON string:", err);
   }

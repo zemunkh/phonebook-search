@@ -1,7 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cns_app">
+    package="com.zemunkh.cns_app">
+
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="https" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.DIAL" />
+      <data android:scheme="tel" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.SENDTO" />
+      <data android:scheme="smsto" />
+    </intent>
+  </queries>
+
    <application
-        android:label="cns_app"
+        android:label="Phonebook"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

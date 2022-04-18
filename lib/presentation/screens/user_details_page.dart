@@ -15,6 +15,18 @@ class UserDetailsPage extends StatelessWidget {
     }
   }
 
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    // Use `Uri` to ensure that `phoneNumber` is properly URL-encoded.
+    // Just using 'tel:$phoneNumber' would create invalid URLs in some cases,
+    // such as spaces in the input, which would cause `launch` to fail on some
+    // platforms.
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    await launch(launchUri.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +112,8 @@ class UserDetailsPage extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: () {
-                    customLaunch('tell://+976-${user.phone}');
+                    // customLaunch('tell:+976-${user.phone}');
+                    _makePhoneCall(user.phone);
                   },
                   child: Icon(
                     Icons.phone,
