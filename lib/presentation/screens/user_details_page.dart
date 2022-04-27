@@ -11,6 +11,7 @@ class UserDetailsPage extends StatelessWidget {
     if(await canLaunch(command)){
       await launch(command);
     }else{
+      // ignore: avoid_print
       print('Error');
     }
   }
@@ -36,91 +37,114 @@ class UserDetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 16.0,
+            const SizedBox(
+              height: 22.0,
             ),
             Center(
               child: Hero(
                 tag: user.id,
                 child: CircleAvatar(
-                  backgroundImage: AssetImage('assets/user.png'),
+                  backgroundImage: AssetImage('assets/avatars/${user.id % 10}.png'),
                   backgroundColor: Colors.white70,
                   radius: 100.0,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22.0,
             ),
             Text(
-              '${user.name}',
-              style: TextStyle(
+              user.name,
+              style: const TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.w700,
               ),
               textAlign: TextAlign.left,
             ),
-            SizedBox(
+            const SizedBox(
               height: 12.0,
             ),
-            Text(
-              '${user.department}',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                user.department,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            user.email.length > 5 ?
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                shadowColor: Colors.blue,
+                textStyle: TextStyle(color: Colors.blue),
+                backgroundColor: Colors.white,
+                shape:RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ), 
+              ),
+              onPressed: () => {customLaunch(user.email)},
+              icon: const Icon(Icons.send_rounded,),
+              label: Text('${user.email}',),
+            ) : const Text(''),
+            const SizedBox(
+              height: 12.0,
+            ),
+            user.phone != '' ?
+            const Text(
+              'Гар утас',
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '${user.email}',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    customLaunch('mailto:${user.email}?subject=Contact%20Information&body=Type%20your%20mail%20here');
-                  },
-                  child: Icon(
-                    Icons.email,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '${user.phone}',
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    // customLaunch('tell:+976-${user.phone}');
-                    _makePhoneCall(user.phone);
-                  },
-                  child: Icon(
-                    Icons.phone,
-                  ),
-                ),
-              ],
-            ),
+            ) : const Text(''),
+            user.phone != '' ?
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                shadowColor: Colors.blue,
+                textStyle: TextStyle(color: Colors.blue),
+                backgroundColor: Colors.white,
+                shape:RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ), 
+              ),
+              onPressed: () => {_makePhoneCall(user.phone)},
+              icon: const Icon(Icons.phone_android_rounded,),
+              label: Text(user.phone,),
+            ) : const Text(''),
+
+            user.tphone != 0 ?
+            const Text(
+              'Ширээний утас',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.left,
+            ) : const Text(''),
+
+           user.tphone != 0 ?
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                shadowColor: Colors.blue,
+                textStyle: const TextStyle(color: Colors.blue),
+                backgroundColor: Colors.white,
+                shape:RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ), 
+              ),
+              onPressed: () => {_makePhoneCall('7128${user.tphone.toString}')},
+              icon: const Icon(Icons.phone_callback_rounded,),
+              label: Text('${user.tphone}',),
+            ) : const Text(''),
           ],
         ),
       ),

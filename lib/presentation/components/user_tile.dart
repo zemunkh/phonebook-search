@@ -17,7 +17,7 @@ class UserTile extends StatelessWidget {
             leading: Hero(
               tag: user.id,
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/user.png'),
+                backgroundImage: AssetImage('assets/avatars/${user.id % 10}.png'),
                 backgroundColor: Colors.white70,
               ),
             ),

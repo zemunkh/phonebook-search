@@ -34,6 +34,9 @@ flutter:
     - airplane.json
     - contacts.json
     - user.png
+    - nav.jpg
+    - cnslogo.png
+    - assets/avatars/
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
