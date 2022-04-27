@@ -58,7 +58,7 @@ class UserDetailsPage extends StatelessWidget {
             Text(
               user.name,
               style: const TextStyle(
-                fontSize: 25.0,
+                fontSize: 32.0,
                 fontWeight: FontWeight.w700,
               ),
               textAlign: TextAlign.left,
@@ -71,7 +71,7 @@ class UserDetailsPage extends StatelessWidget {
               child: Text(
                 user.department,
                 style: const TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 20.0,
                   fontWeight: FontWeight.w500,
                 ),
                 textAlign: TextAlign.center,
@@ -90,9 +90,9 @@ class UserDetailsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24.0),
                 ), 
               ),
-              onPressed: () => {customLaunch(user.email)},
+              onPressed: () => {customLaunch('mailto:${user.email}')},
               icon: const Icon(Icons.send_rounded,),
-              label: Text('${user.email}',),
+              label: Text(user.email, style: const TextStyle(fontSize: 20),),
             ) : const Text(''),
             const SizedBox(
               height: 12.0,
@@ -118,7 +118,7 @@ class UserDetailsPage extends StatelessWidget {
               ),
               onPressed: () => {_makePhoneCall(user.phone)},
               icon: const Icon(Icons.phone_android_rounded,),
-              label: Text(user.phone,),
+              label: Text(user.phone, style: const TextStyle(fontSize: 20),),
             ) : const Text(''),
 
             user.tphone != 0 ?
@@ -131,7 +131,7 @@ class UserDetailsPage extends StatelessWidget {
               textAlign: TextAlign.left,
             ) : const Text(''),
 
-           user.tphone != 0 ?
+           user.tphone >= 1000 ?
             TextButton.icon(
               style: TextButton.styleFrom(
                 shadowColor: Colors.blue,
@@ -141,9 +141,9 @@ class UserDetailsPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24.0),
                 ), 
               ),
-              onPressed: () => {_makePhoneCall('7128${user.tphone.toString}')},
+              onPressed: () => {_makePhoneCall('7128${user.tphone}')},
               icon: const Icon(Icons.phone_callback_rounded,),
-              label: Text('${user.tphone}',),
+              label: Text('${user.tphone}', style: const TextStyle(fontSize: 20),),
             ) : const Text(''),
           ],
         ),

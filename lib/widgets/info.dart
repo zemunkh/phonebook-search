@@ -35,10 +35,12 @@ class _InfoState extends State<Info> {
               height: 80,
               width: MediaQuery.of(context).size.width / 2,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  image: const DecorationImage(
-                      fit: BoxFit.fitWidth,
-                      image: AssetImage('assets/cnslogo.png'))),
+                borderRadius: BorderRadius.circular(15.0),
+                image: const DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/cnslogo.png'),
+                ),
+              ),
             ),
           ),
           Card(
@@ -55,7 +57,7 @@ class _InfoState extends State<Info> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     infoText(
-                        'Улаанбаатар хот, Хан-Уул дүүрэг, 10 дугаар хороо, Буянт-Ухаа',
+                        'Улаанбаатар хот, Хан-Уул дүүрэг, 21-р дугаар хороо, Буянт-Ухаа',
                         Icons.location_pin),
                     infoText('71281659', Icons.phone_android_rounded),
                     infoText('cns_office@mcaa.gov.mn', Icons.email_outlined),
@@ -63,7 +65,8 @@ class _InfoState extends State<Info> {
                 ),
               ),
             ),
-            margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0, bottom: 20.0),
+            margin: const EdgeInsets.only(
+                left: 20.0, right: 20.0, top: 5.0, bottom: 20.0),
           ),
           Card(
             child: Container(
