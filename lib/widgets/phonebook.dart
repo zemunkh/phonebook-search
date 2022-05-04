@@ -31,17 +31,15 @@ class _PhonebookState extends State<Phonebook> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          if (!_isLoading) {
-            return index == 0 ? _searchBar() : UserTile(user: _usersDisplay[index - 1]);
-          } else {
-            return LoadingView();
-          }
-        },
-        itemCount: _usersDisplay.length + 1,
-      ),
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        if (!_isLoading) {
+          return index == 0 ? _searchBar() : UserTile(user: _usersDisplay[index - 1]);
+        } else {
+          return LoadingView();
+        }
+      },
+      itemCount: _usersDisplay.length + 1,
     );
   }
 

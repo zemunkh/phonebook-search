@@ -57,7 +57,7 @@ class _InfoState extends State<Info> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     infoText(
-                        'Улаанбаатар хот, Хан-Уул дүүрэг, 21-р дугаар хороо, Буянт-Ухаа',
+                        'Улаанбаатар хот, Хан-Уул дүүрэг, 21-р хороо, Буянт-Ухаа',
                         Icons.location_pin),
                     infoText('71281659', Icons.phone_android_rounded),
                     infoText('cns_office@mcaa.gov.mn', Icons.email_outlined),

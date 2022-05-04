@@ -1,5 +1,15 @@
 [
   {
+    "id": 3000,
+    "name": "Ж. Бадарч",
+    "email": "badarch.j@mcaa.gov.mn",
+    "department": "ИНҮТ Засварчин",
+    "tphone": 1699,
+    "phone": "99129912",
+    "created_at": "2021-12-21 22:01:33",
+    "updated_at": "2021-12-21 22:01:33"
+  },  
+  {
     "id": 1801,
     "name": "Ж. Должин",
     "email": "",
