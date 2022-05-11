@@ -1,8 +1,8 @@
+import 'package:cns_app/widgets/favorites.dart';
+
 import '../widgets/phonebook.dart';
 import '../widgets/info.dart';
 import 'package:flutter/material.dart';
-import '../../presentation/screens/home_page.dart';
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,9 +31,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     Phonebook(),
-    Info(),
+    FavoriteContacts(),
+    const Info(),
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +53,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         selectedIconTheme: const IconThemeData(color: Colors.blue),
         selectedItemColor: Colors.blue,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
@@ -61,6 +62,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Бүртгэл',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star_border_outlined),
+            label: 'Хэрэгтэй',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline_rounded),

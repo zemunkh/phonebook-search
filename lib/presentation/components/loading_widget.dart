@@ -14,10 +14,13 @@ class LoadingView extends StatelessWidget {
         Container(
           child: Lottie.asset('assets/airplane.json'),
         ),
-        Text('Ачааллаж байна ...',
-        style: TextStyle(
-          fontSize: 16.0,
-        ),),
+        const Center(
+          child: Text('Ачааллаж байна ...',
+            style: TextStyle(
+              fontSize: 16.0,
+            ),
+          ),
+        ),
       ],
     );
   }

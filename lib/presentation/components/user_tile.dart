@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../data/contact.dart';
+import '../../domain/repository.dart';
 import '../../presentation/screens/user_details_page.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
-
-  UserTile({required this.user});
-
+  final bool isFavorite;
+  final VoidCallback onFavoriteClicked;
+  UserTile({required this.user, required this.isFavorite, required this.onFavoriteClicked});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,10 +28,16 @@ class UserTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => UserDetailsPage(user: user)));
+                      builder: (context) => UserDetailsPage(user: user, onFavClicked: () => onFavoriteClicked())));
             },
+            trailing: IconButton(
+              icon: Icon(Icons.star,
+                color: (isFavorite) ? Colors.yellow[600] : Colors.grey[300],
+              ),
+              onPressed: () => onFavoriteClicked(),
+            ),
           ),
-          Divider(
+          const Divider(
             thickness: 2.0,
           ),
         ],
