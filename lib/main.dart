@@ -1,5 +1,4 @@
 import 'package:cns_app/widgets/favorites.dart';
-
 import '../widgets/phonebook.dart';
 import '../widgets/info.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +45,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ИНЕГ Утасны бүртгэл'),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40.0),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: AppBar(
+            title: const Text('ИНЕГ Утасны бүртгэл'),
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.info_outline_rounded,
+                ),
+                onPressed: () {
+                  _onItemTapped(2);
+                },
+              )
+            ],
+          ),
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

@@ -66,25 +66,30 @@ class _PhonebookState extends State<Phonebook> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: (!_isLoading && !_isFavLoading) ? ListView.builder(
-        controller: _scrollController,
-        itemBuilder: (context, index) {
-          return index == 0 ? _searchBar() : 
-            UserTile(
-              user: _usersDisplay[index - 1],
-              isFavorite: _favoriteContacts.contains(_usersDisplay[index - 1].id.toString()),
-              onFavoriteClicked: () {
-                saveFavoriteContact(_usersDisplay[index - 1].id).then((val){
-                  fetchFavorites().then((value) {
-                    setState(() {
-                      _favoriteContacts = value;
+      body: (!_isLoading && !_isFavLoading) ? GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: ListView.builder(
+          controller: _scrollController,
+          itemBuilder: (context, index) {
+            return index == 0 ? _searchBar() : 
+              UserTile(
+                user: _usersDisplay[index - 1],
+                isFavorite: _favoriteContacts.contains(_usersDisplay[index - 1].id.toString()),
+                onFavoriteClicked: () {
+                  saveFavoriteContact(_usersDisplay[index - 1].id).then((val){
+                    fetchFavorites().then((value) {
+                      setState(() {
+                        _favoriteContacts = value;
+                      });
                     });
                   });
-                });
-              }
-            );
-        },
-        itemCount: _usersDisplay.length + 1,
+                }
+              );
+          },
+          itemCount: _usersDisplay.length + 1,
+        ),
       ) : LoadingView(),
       floatingActionButton: _showBackToTopButton == false ? null : FloatingActionButton(
         onPressed: _scrollToTop,
@@ -121,6 +126,7 @@ class _PhonebookState extends State<Phonebook> {
           : IconButton(
               icon: const Icon(Icons.clear),
               onPressed: () {
+                FocusScope.of(context).requestFocus(FocusNode());
                 _controller.text = '';
                 fetchUsers().then((value) {
                   setState(() {
